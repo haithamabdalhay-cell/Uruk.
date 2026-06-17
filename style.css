@@ -1,0 +1,269 @@
+/* --- 0. General Setup & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* --- Premium Dark Mode Colors --- */
+    --bg-color: #0b0d11; /* Charcoal Black */
+    --bg-card: #121620; /* Dark Obsidian */
+    --bg-card-hover: #1e2433; /* Dark Navy/BlueGrey */
+    --text-primary: #e2e8f0; /* Soft White */
+    --text-secondary: #8a94a6; /* Muted Grey */
+    --gold-accent: #d9a752; /* Rich Gold */
+    --danger-red: #ef4444; /* Alert Red */
+    
+    /* --- Premium Fonts --- */
+    --font-arabic: 'Cairo', sans-serif;
+    --font-latin: 'Cinzel', serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+body {
+    font-family: var(--font-arabic);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Typographical Utilities --- */
+.latin-text { font-family: var(--font-latin); }
+.gold-text { color: var(--gold-accent); }
+.muted-text { color: var(--text-secondary); font-size: 0.95rem; }
+.section-title { font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+.section-subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 30px; }
+.gold-btn {
+    background-color: transparent;
+    color: var(--gold-accent);
+    border: 1.5px solid var(--gold-accent);
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.gold-btn:hover { background-color: var(--gold-accent); color: #fff; }
+
+/* --- 0. Splash Screen Animation --- */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.splash-content { text-align: center; }
+.splash-logo { width: 100px; margin-bottom: 20px; }
+.splash-main-title { font-size: 3rem; color: var(--gold-accent); }
+.splash-subtitle { font-size: 1.2rem; color: #fff; letter-spacing: 2px; }
+
+/* --- 1. Sticky Header --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: transparent;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.main-header.scrolled {
+    background-color: #12161f;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(217, 167, 82, 0.2);
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.header-logo {
+    font-size: 1.5rem;
+    color: var(--gold-accent);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.header-logo-img { width: 35px; margin-left: 10px; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a:not(.gold-btn) {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.nav-links a:not(.gold-btn):hover { color: var(--gold-accent); }
+
+/* --- Main Layout generic --- */
+main.main-content { padding: 120px 0 60px 0; }
+section { margin-bottom: 60px; padding-top: 30px; }
+.grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+.accent-bar { width: 40px; height: 3px; background-color: var(--gold-accent); margin: 20px 0 30px 0; }
+
+/* --- 1. Hero & Overview --- */
+.tagline-container { margin-bottom: 40px; }
+.tagline { font-size: 1.4rem; color: var(--text-secondary); }
+.main-title { font-size: 2.8rem; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+.founder-badge {
+    display: inline-block;
+    background: rgba(217, 167, 82, 0.1);
+    border: 1px solid rgba(217, 167, 82, 0.25);
+    color: var(--gold-accent);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+}
+.specialization-pills { margin-top: 25px; }
+.pill-box {
+    display: inline-block;
+    background: var(--bg-card);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin: 6px;
+    font-size: 0.95rem;
+    border-left: 3px solid var(--gold-accent);
+}
+/* 🚫 Danger Zone Card */
+.danger-zone {
+    background: rgba(239, 68, 68, 0.04);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-right: 4px solid var(--danger-red);
+    padding: 18px;
+    border-radius: 6px;
+}
+.danger-title { color: var(--danger-red); font-size: 1.1rem; margin-bottom: 6px; }
+.danger-p { font-size: 0.9rem; color: #a0aec0; }
+
+/* --- 2. generic grid col and list generic --- */
+.grid-row { display: flex; gap: 20px; margin-bottom: 18px; }
+.grid-col { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 20px; border-radius: 6px; }
+.grid-col-3 { width: 33.33%; }
+.grid-col-2 { width: 50%; }
+
+.custom-list { list-style: none; }
+.custom-list li {
+    position: relative;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+.custom-list li::before {
+    content: "•";
+    position: absolute;
+    right: 0;
+    color: var(--gold-accent);
+    font-weight: bold;
+}
+
+/* --- 3. Projects Card generic --- */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(217, 167, 82, 0.08);
+    border-radius: 6px;
+    padding: 25px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.project-card:hover { transform: translateY(-4px); background-color: var(--bg-card-hover); }
+.project-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; margin-bottom: 18px; }
+.project-logo { font-size: 1.5rem; font-weight: 600; color: #fff; }
+.badge-text {
+    background: #1d2436;
+    color: var(--gold-accent);
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(217, 167, 82, 0.2);
+}
+.project-subgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.project-subgrid .project-card { height: 100%; }
+
+/* --- 4. Expertise Section & generic systems list generic --- */
+.expertise-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px;}
+.tech-system-list { list-style: none; }
+.tech-system-list li { margin-bottom: 14px; font-size: 1rem; color: #cbd5e1;}
+.tech-system-list li strong { color: #fff;}
+
+/* 🎯 Calibration Widget Widget */
+.calibration-widget {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-accent);
+    border-radius: 8px;
+    padding: 25px;
+}
+.cal-grid { display: flex; text-align: center; justify-content: center;}
+.cal-box { padding: 15px; border-left: 1px solid rgba(217, 167, 82, 0.15); }
+.cal-box:last-child { border-left: none; }
+.cal-val { font-size: 2.2rem; font-weight: bold; color: var(--gold-accent); font-family: 'Courier New', Courier, monospace; }
+.cal-lbl { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;}
+.cal-aim-p { text-align: center; margin-top: 20px; font-size: 1rem; color: #cbd5e1;}
+
+/* --- 5. generic grid qc generic --- */
+.qc-grid li.qc-aim-li { color: var(--gold-accent); margin-top: 15px;}
+.qc-grid li.qc-aim-li strong { color: #fff;}
+
+/* --- 10. Footer generic --- */
+.main-footer { background: #12161f; border-top: 1px solid rgba(217, 167, 82, 0.2); padding: 40px 0; color: var(--text-secondary); }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;}
+.footer-logo { font-size: 1.6rem; font-weight: bold; color: #fff; }
+.footer-closing-p { font-size: 1rem; letter-spacing: 1px; color: var(--gold-accent); }
+.footer-contact-info { text-align: center; margin-top: 20px;}
+.footer-contact-info .founder { font-size: 1rem; color: var(--text-primary); margin-bottom: 5px;}
+.footer-contact-info .contact { font-size: 0.95rem;}
+.contact-num { font-weight: bold; color: #fff; direction: ltr; display: inline-block; margin-right: 5px;}
+
+
+/* --- X. general Mtion Class generic --- */
+/* elements will fade and slide up generic */
+.scroll-anim { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.scroll-anim.active { opacity: 1; transform: translateY(0); }
+
+.anim-fadeInUp { animation: fadeInUp 0.6s ease forwards; opacity: 0;}
+.anim-fadeIn { animation: fadeIn 0.8s ease forwards; opacity: 0;}
+.anim-fadeInRight { animation: fadeInRight 0.6s ease forwards; opacity: 0;}
+
+.staggered-1 { animation-delay: 0.1s; }
+.staggered-2 { animation-delay: 0.2s; }
+.staggered-3 { animation-delay: 0.3s; }
+.staggered-4 { animation-delay: 0.4s; }
+
+.stagger-anim-list li { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.stagger-anim-list.active li { opacity: 1; transform: translateY(0); }
+.stagger-anim-list.active li:nth-child(1) { transition-delay: 0.1s; }
+.stagger-anim-list.active li:nth-child(2) { transition-delay: 0.2s; }
+.stagger-anim-list.active li:nth-child(3) { transition-delay: 0.3s; }
+.stagger-anim-list.active li:nth-child(4) { transition-delay: 0.4s; }
+
+/* animations keyframes generic */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+
+/* --- general responsiveness generic --- */
+@media (max-width: 992px) {
+    .main-title { font-size: 2.2rem; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-row { flex-direction: column; }
+    .grid-col-3, .grid-col-2 { width: 100%; }
+    .project-subgrid { grid-template-columns: 1fr; }
+    .expertise-row { grid-template-columns: 1fr; }
+    .nav-links { gap: 10px; }
+}
+
