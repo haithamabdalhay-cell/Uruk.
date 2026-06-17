@@ -71,7 +71,6 @@ body {
     z-index: 9999;
 }
 .splash-content { text-align: center; }
-.splash-logo { width: 100px; margin-bottom: 20px; }
 .splash-main-title { font-size: 3rem; color: var(--gold-accent); }
 .splash-subtitle { font-size: 1.2rem; color: #fff; letter-spacing: 2px; }
 
@@ -99,7 +98,6 @@ body {
     display: flex;
     align-items: center;
 }
-.header-logo-img { width: 35px; margin-left: 10px; }
 .nav-links { display: flex; gap: 20px; list-style: none; }
 .nav-links a:not(.gold-btn) {
     color: var(--text-secondary);
@@ -117,6 +115,8 @@ section { margin-bottom: 60px; padding-top: 30px; }
 .accent-bar { width: 40px; height: 3px; background-color: var(--gold-accent); margin: 20px 0 30px 0; }
 
 /* --- 1. Hero & Overview --- */
+.overview-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+
 .tagline-container { margin-bottom: 40px; }
 .tagline { font-size: 1.4rem; color: var(--text-secondary); }
 .main-title { font-size: 2.8rem; color: #fff; margin-bottom: 10px; line-height: 1.2; }
@@ -256,14 +256,49 @@ section { margin-bottom: 60px; padding-top: 30px; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInRight { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
+/* --- Mobile Hamburger Menu --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--gold-accent);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
 /* --- general responsiveness generic --- */
 @media (max-width: 992px) {
     .main-title { font-size: 2.2rem; }
+    .overview-grid { grid-template-columns: 1fr; }
     .grid-2 { grid-template-columns: 1fr; }
     .grid-row { flex-direction: column; }
     .grid-col-3, .grid-col-2 { width: 100%; }
     .project-subgrid { grid-template-columns: 1fr; }
     .expertise-row { grid-template-columns: 1fr; }
-    .nav-links { gap: 10px; }
+    .menu-toggle { display: flex; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #12161f;
+        padding: 20px;
+        border-top: 1px solid rgba(217, 167, 82, 0.2);
+        gap: 14px;
+    }
+    .nav-links.nav-open { display: flex; }
 }
 
